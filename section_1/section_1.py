@@ -70,6 +70,9 @@ if __name__ == "__main__":
 
     # 09
     def typoglycemia(word):
+        if len(word) <= 4:
+            return word
+
         import random
         first, last = word[0], word[-1]
         contents = word[1:-1]
@@ -78,4 +81,4 @@ if __name__ == "__main__":
 
     sentence_09 = "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind ."
     words_09 = sentence_09.split(' ')
-    print('09: ', ' '.join([typoglycemia(w) if len(w) > 4 else w for w in words_09]))
+    print('09: ', ' '.join([typoglycemia(w) for w in words_09]))
