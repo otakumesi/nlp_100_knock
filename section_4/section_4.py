@@ -10,7 +10,7 @@ def read_mecab_file(file_path):
     return text
 
 def build_mecab_lines(mecab_text):
-    return [line for line in read_mecab_file(MECAB_FILE_PATH).split('\n')]
+    return [line for line in mecab_text.split('\n')]
 
 def build_morphe_dict(line):
     match = re.search('(.+?)\t+(.+)', line)
