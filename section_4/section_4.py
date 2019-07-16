@@ -1,7 +1,6 @@
 import re
 
 # 30
-
 MECAB_FILE_PATH = './neko.txt.mecab'
 
 def read_mecab_file(file_path):
@@ -42,4 +41,23 @@ def build_sentence_list(mecab_lines):
     return sentence_list
 
 sentence_list = build_sentence_list(build_mecab_lines(read_mecab_file(MECAB_FILE_PATH)))
-print(sentence_list)
+
+# 31
+words = sum(sentence_list, [])
+verbs = [w for w in words if w['pos'] == '動詞']
+verb_surfaces = [v['surface'] for v in verbs]
+
+# 32
+verb_bases = [v['base'] for v in verbs]
+
+# 33
+nouns = [w for w in words if w['pos'] == '名詞']
+sahen_cones = [n for n in nouns if n['pos1'] == 'サ変接続']
+
+# 34
+def detect_connection_by_no(words):
+    for i in range(0, len(words) - 2):
+        left, middle, right = words[i:(i+3)]
+        print(left, middle, right)
+
+detect_connection_by_no(sentence_list[1])
