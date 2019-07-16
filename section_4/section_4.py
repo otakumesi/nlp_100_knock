@@ -90,5 +90,8 @@ def get_freqs_of_word(words):
 
 freqs = get_freqs_of_word(words)
 
-word_surfaces = list(set([w['surface'] for w in words]))
-top_words = sorted(word_surfaces, key=lambda w: freqs[w], reverse=True)[0:15]
+word_surfaces = list(set([w['surface'] for w in words if not w['pos'] == '記号']))
+word_sorted_by_freqs = sorted(word_surfaces, key=lambda w: freqs[w], reverse=True)
+
+# 37
+print(word_sorted_by_freqs[:10])
