@@ -31,13 +31,12 @@ def build_sentence_list(mecab_lines):
             continue
 
         if line.startswith('EOS'):
-            if bool(morph_dict_list):
+            if morph_dict_list:
                 sentence_list.append(morph_dict_list)
                 morph_dict_list = []
             continue
 
-        if not re.search(r'^(　|。|、)', line):
-            morph_dict_list.append(build_morphe_dict(line))
+        morph_dict_list.append(build_morphe_dict(line))
     return sentence_list
 
 sentence_list = build_sentence_list(build_mecab_lines(read_mecab_file(MECAB_FILE_PATH)))
