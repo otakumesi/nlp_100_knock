@@ -63,3 +63,19 @@ def detect_nouns_connected_by_no(words):
     return nouns
 
 nouns_connected_by_no = detect_nouns_connected_by_no(words)
+
+# 35
+def detect_linked_nouns(words):
+    linked_nouns = []
+    linked_noun = []
+    for word in words:
+        if word['pos'] == '名詞':
+            linked_noun.append(word)
+            continue
+
+        if linked_noun:
+            linked_nouns.append(linked_noun[:])
+            linked_noun = []
+    return linked_nouns
+
+linked_nouns = sum([detect_linked_nouns(words) for words in sentence_list], [])
