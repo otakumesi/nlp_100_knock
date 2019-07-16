@@ -1,5 +1,7 @@
 import re
 import itertools
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
 
 # 30
 MECAB_FILE_PATH = './neko.txt.mecab'
@@ -94,4 +96,10 @@ word_surfaces = list(set([w['surface'] for w in words if not w['pos'] == '記号
 word_sorted_by_freqs = sorted(word_surfaces, key=lambda w: freqs[w], reverse=True)
 
 # 37
-print(word_sorted_by_freqs[:10])
+rcParams['font.family'] = 'sans-serif'
+rcParams['font.sans-serif'] = ['Hiragino Maru Gothic Pro', 'Meirio', 'Noto Sans CJK JP']
+top_word_freqs = [freqs[w] for w in word_sorted_by_freqs[:11]]
+plt.bar(range(1, len(top_word_freqs) + 1), top_word_freqs, tick_label=word_sorted_by_freqs[:11])
+plt.xlabel('単語')
+plt.ylabel('出現頻度')
+plt.show()
