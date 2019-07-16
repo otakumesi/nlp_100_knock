@@ -1,4 +1,5 @@
 import re
+import itertools
 
 # 30
 MECAB_FILE_PATH = './neko.txt.mecab'
@@ -79,3 +80,15 @@ def detect_linked_nouns(words):
     return linked_nouns
 
 linked_nouns = sum([detect_linked_nouns(words) for words in sentence_list], [])
+
+# 36
+def get_freqs_of_word(words):
+    freqs = {}
+    for word in words:
+        freqs[word['surface']] = freqs.get(word['surface'], 0) + 1
+    return freqs
+
+freqs = get_freqs_of_word(words)
+
+word_surfaces = list(set([w['surface'] for w in words]))
+top_words = sorted(word_surfaces, key=lambda w: freqs[w], reverse=True)[0:15]
