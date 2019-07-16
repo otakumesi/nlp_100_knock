@@ -54,9 +54,12 @@ nouns = [w for w in words if w['pos'] == '名詞']
 sahen_cones = [n for n in nouns if n['pos1'] == 'サ変接続']
 
 # 34
-def detect_connection_by_no(words):
+def detect_nouns_connected_by_no(words):
+    nouns = []
     for i in range(0, len(words) - 2):
         left, middle, right = words[i:(i+3)]
-        print(left, middle, right)
+        if middle['surface'] == 'の' and all([w['pos'] == '名詞' for w in [left, right]]):
+            nouns.extend([left, right])
+    return nouns
 
-detect_connection_by_no(sentence_list[1])
+nouns_connected_by_no = detect_nouns_connected_by_no(words)
