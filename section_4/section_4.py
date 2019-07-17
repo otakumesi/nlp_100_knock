@@ -98,7 +98,22 @@ from matplotlib import rcParams
 rcParams['font.family'] = 'sans-serif'
 rcParams['font.sans-serif'] = ['Hiragino Maru Gothic Pro', 'Meirio', 'Noto Sans CJK JP']
 top_word_freqs = [freqs[w] for w in word_sorted_by_freqs[:11]]
-plt.bar(range(1, len(top_word_freqs) + 1), top_word_freqs, tick_label=word_sorted_by_freqs[:11])
-plt.xlabel('単語')
-plt.ylabel('出現頻度')
+# plt.bar(range(1, len(top_word_freqs) + 1), top_word_freqs, tick_label=word_sorted_by_freqs[:11])
+# plt.xlabel('単語')
+# plt.ylabel('出現頻度')
+# plt.show()
+
+# 38
+# plt.hist(list(freqs.values()), bins=10, log=True)
+# plt.xlabel('単語の出現頻度')
+# plt.ylabel('種類数')
+# plt.show()
+
+# 39
+freq_ranks = sorted(freqs.values(), reverse=True)
+plt.plot([i + 1 for i, v in enumerate(freq_ranks)], freq_ranks)
+plt.yscale('log')
+plt.xscale('log')
+plt.xlabel('単語の出現頻度順位')
+plt.ylabel('単語の出現頻度')
 plt.show()
